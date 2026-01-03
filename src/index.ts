@@ -36,6 +36,8 @@ export async function run(): Promise<void> {
     const tagsList: string[] = tags.trim().split(/\s+/);
     const labels = core.getInput(Inputs.LABELS);
     const labelsList: string[] = labels ? splitByNewline(labels) : [];
+    const annotations = core.getInput(Inputs.ANNOTATIONS);
+    const annotationList: string[] = annotations ? splitByNewline(annotations) : [];
 
     const normalizedTagsList: string[] = [];
     let isNormalized = false;
@@ -96,6 +98,7 @@ export async function run(): Promise<void> {
             archs,
             platforms,
             labelsList,
+            annotationList,
             buildahExtraArgs
         ));
     }
@@ -152,6 +155,7 @@ async function doBuildUsingContainerFiles(
     archs: string[],
     platforms: string[],
     labels: string[],
+    annotations: string[],
     extraArgs: string[]
 ): Promise<string[]> {
     if (containerFiles.length === 1) {
@@ -185,6 +189,7 @@ async function doBuildUsingContainerFiles(
                 buildArgs,
                 useOCI,
                 labels,
+                annotations,
                 layers,
                 extraArgs,
                 tlsVerify,
@@ -205,6 +210,7 @@ async function doBuildUsingContainerFiles(
                 buildArgs,
                 useOCI,
                 labels,
+                annotations,
                 layers,
                 extraArgs,
                 tlsVerify,
@@ -223,6 +229,7 @@ async function doBuildUsingContainerFiles(
             buildArgs,
             useOCI,
             labels,
+            annotations,
             layers,
             extraArgs,
             tlsVerify,
@@ -239,6 +246,7 @@ async function doBuildUsingContainerFiles(
             buildArgs,
             useOCI,
             labels,
+            annotations,
             layers,
             extraArgs,
             tlsVerify

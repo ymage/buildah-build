@@ -16,12 +16,13 @@ export interface BuildahConfigSettings {
     workingdir?: string;
     arch?: string;
     labels?: string[];
+    annotations?: string[];
 }
 
 interface Buildah {
     buildUsingDocker(
         image: string, context: string, containerFiles: string[], buildArgs: string[],
-        useOCI: boolean, labels: string[], layers: string,
+        useOCI: boolean, labels: string[], annotations: string[], layers: string,
         extraArgs: string[], tlsVerify: boolean, arch?: string, platform?: string,
     ): Promise<CommandResult>;
     from(baseImage: string, tlsVerify: boolean, extraArgs: string[]): Promise<CommandResult>;
@@ -72,6 +73,7 @@ export class BuildahCli implements Buildah {
         buildArgs: string[],
         useOCI: boolean,
         labels: string[],
+        annotations: string[],
         layers: string,
         extraArgs: string[],
         tlsVerify: boolean,
@@ -95,6 +97,12 @@ export class BuildahCli implements Buildah {
             args.push("--label");
             args.push(label);
         });
+        if (useOCI) {
+            annotations.forEach((annotation) => {
+                args.push("--annotation");
+                args.push(annotation);
+            });
+        }
         buildArgs.forEach((buildArg) => {
             args.push("--build-arg");
             args.push(buildArg);
