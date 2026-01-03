@@ -146,6 +146,12 @@ export enum Inputs {
 
 export enum Outputs {
     /**
+     * Digest of the built image
+     * Required: false
+     * Default: None.
+     */
+    DIGEST = "digest",
+    /**
      * Name of the image built
      * Required: false
      * Default: None.

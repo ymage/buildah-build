@@ -96,6 +96,8 @@ outputs:
     description: 'List of the tags that were created, separated by spaces'
   image-with-tag:
     description: 'Name of the image tagged with the first tag present'
+  digest:
+    description: 'Digest of the built image'
 runs:
   using: 'node20'
   main: 'dist/index.js'

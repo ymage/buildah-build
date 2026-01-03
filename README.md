@@ -93,6 +93,7 @@ If the `tags` input does not have image names in the `${name}:${tag}` form, then
 `image`: The name of the image as it was input.<br>
 `tags`: A space-separated list of the tags that were applied to the new image.<br>
 `image-with-tag`: The name of the image, tagged with the first tag.<br>
+`digest`: The digest of the image built.<br>
 
 For example:
 
@@ -100,6 +101,7 @@ For example:
 image: "spring-image"
 tags: "latest ${{ github.sha }}"
 image-with-tag: "spring-image:latest"
+digest: "sha256:1235546456546..."
 ```
 
 <a id="build-types"></a>

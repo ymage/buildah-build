@@ -141,9 +141,14 @@ export async function run(): Promise<void> {
         core.info(`✅ Successfully built image "${getFullImageName(normalizedImage, normalizedTagsList[0])}"`);
     }
 
+    // Get the digest of the built image
+    const inspectResult = await cli.inspect(newImage);
+    const digest = inspectResult.output.trim();
+
     core.setOutput(Outputs.IMAGE, normalizedImage);
     core.setOutput(Outputs.TAGS, tags);
     core.setOutput(Outputs.IMAGE_WITH_TAG, newImage);
+    core.setOutput(Outputs.DIGEST, digest);
 }
 
 async function doBuildUsingContainerFiles(

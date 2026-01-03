@@ -1,5 +1,11 @@
 # buildah-build Changelog
 
+## v2.16
+- Add support for image digest output (https://github.com/redhat-actions/buildah-build/pull/153)
+
+## v2.15
+- Add support for annotations as an action input (https://github.com/redhat-actions/buildah-build/pull/135)
+
 ## v2.14
 - Update dependencies
 - Make squashing optional (https://github.com/redhat-actions/buildah-build/pull/139)

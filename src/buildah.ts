@@ -245,6 +245,11 @@ export class BuildahCli implements Buildah {
         await this.execute(args);
     }
 
+    async inspect(image: string): Promise<CommandResult> {
+        const args: string[] = [ "inspect", "--format", "{{.FromImageDigest}}", image ];
+        return this.execute(args);
+    }
+
     private static convertArrayToStringArg(args: string[]): string {
         let arrayAsString = "[";
         args.forEach((arg) => {
